@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   belongs_to :rolable, polymorphic: true
 
+  validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create

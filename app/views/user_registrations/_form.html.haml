@@ -1,5 +1,13 @@
 = form_for @user do |f|
   %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :phone_number
+    %br
+    = f.text_field :phone_number
+  %p
     = f.label :email
     %br
     = f.email_field :email
