@@ -1,22 +1,5 @@
 %h2 Sign Up
 
-= form_for @user do |f|
-  %p
-    = f.label :email
-    %br
-    = f.email_field :email
-  %p
-    = f.label :password
-    %br
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
-
-  = f.hidden_field :rolable_type
-
-  %p
-    = f.submit "Sign up"
+= render 'form', user: @user
 
 = render 'devise/shared/links'
