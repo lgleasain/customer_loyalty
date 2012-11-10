@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :rolable_id, :rolable_type, :name, :phone_number
+    :rolable_id, :rolable_type, :name, :phone_number, :merchant
   # attr_accessible :title, :body
 
   belongs_to :rolable, polymorphic: true
@@ -24,10 +24,18 @@ class User < ActiveRecord::Base
   end
 
   def create_merchant(merchant)
-    self.rolable_id = merchant.id if merchant.valid?
+    self.rolable_id = merchant.id
   end
 
   def create_customer
     self.rolable_id = Customer.create.id
+  end
+
+  def is_merchant?
+    self.rolable_type == "merchant"
+  end
+
+  def is_customer?
+    self.rolable_type == "customer"
   end
 end

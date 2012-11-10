@@ -20,6 +20,11 @@ describe "Sign Ups", js: true do
       fill_in('user[email]', with: 'bob@example.com')
       fill_in('user[password]', with: 'abcd1234')
       fill_in('user[password_confirmation]', with: 'abcd1234')
+
+      fill_in('merchant[addresses_attributes][0][street]', with: '123 kickass way')
+      fill_in('merchant[addresses_attributes][0][city]', with: 'Atlanta')
+      fill_in('merchant[addresses_attributes][0][state]', with: 'Georgia')
+      fill_in('merchant[addresses_attributes][0][zip]', with: '30332')
       click_on("Sign up")
       page.should have_content("Signed up!")
     end

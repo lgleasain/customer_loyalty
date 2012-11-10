@@ -10,13 +10,17 @@ class UserRegistrationsController < Devise::RegistrationsController
     @user = User.new(params[:user])
     @merchant = Merchant.create(params[:merchant])
 
-    if params[:merchant].present?
+    if @merchant.valid?
       @user.create_merchant(@merchant)
-    else
+      valid_merchant = true
+    elsif @user.is_customer?
       @user.create_customer
+      valid_customer = true
+    else
+      valid_merchant = false
     end
 
-    if @user.save
+    if @user.save && (valid_merchant || valid_customer)
       redirect_to root_path, notice: "Signed up!"
     else
       render 'new'

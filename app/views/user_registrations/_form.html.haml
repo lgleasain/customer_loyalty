@@ -1,28 +1,19 @@
-= form_for @user do |f|
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.label :phone_number
-    %br
-    = f.text_field :phone_number
+= simple_form_for @user do |f|
+  = f.input :name
+  = f.input :phone_number
   - if @user.rolable_type == "merchant"
-    = render 'merchant', merchant: @merchant
-  %p
-    = f.label :email
-    %br
-    = f.email_field :email
-  %p
-    = f.label :password
-    %br
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
+    = simple_fields_for @merchant do |mf|
+      = mf.input :about
 
-  = f.hidden_field :rolable_type
+      = mf.simple_fields_for :addresses do |addr|
+        = addr.input :street
+        = addr.input :street_2
+        = addr.input :city
+        = addr.input :state
+        = addr.input :zip
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.input :rolable_type, as: :hidden, input_html: { value: @user.rolable_type }
 
-  %p
-    = f.submit "Sign up"
+  = f.button :submit, "Sign up"
