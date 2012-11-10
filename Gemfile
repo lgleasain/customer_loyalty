@@ -17,3 +17,5 @@ group :test, :development do
   gem 'mocha'
   gem 'factory_girl_rails'
 end
+
+gem 'passbook', :git => 'git://github.com/lgleasain/passbook.git'
