@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110181908) do
+ActiveRecord::Schema.define(:version => 20121110200805) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -23,14 +23,27 @@ ActiveRecord::Schema.define(:version => 20121110181908) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "customer_passbooks", :force => true do |t|
+    t.integer  "merchant_id"
+    t.integer  "user_id"
+    t.integer  "balance"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "customers", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "merchants", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "name"
+    t.string   "reward_program_name"
+    t.string   "earn_type"
+    t.integer  "reward_threshold_number"
+    t.string   "reward_descripton"
   end
 
   create_table "users", :force => true do |t|

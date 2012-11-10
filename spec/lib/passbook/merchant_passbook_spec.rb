@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe 'MerchantPassbook' do
 
-  #et (:claimed_promotion) {FactoryGirl.create :claimed_promotion}
-  let (:merchant) {claimed_promotion.promotion}
-  let (:merchant_passbook) {Passbook:VenPassbook.new claimed_promotion}
+  let (:customer) {FactoryGirl.create :customer}
+  let (:merchant) {FactoryGirl.create :merchant}
+  let (:merchant_passbook) {Passbook::MerchantPassbook.new customer.id, merchant.id}
 
   context 'new passbook' do
 
@@ -15,7 +15,7 @@ describe 'MerchantPassbook' do
     end
 
     context 'main fields' do
-      subject {promotion_passbook.pass}
+      subject {merchant_passbook.pass}
       its(['logoText']) {should eq ''}
       its(['formatVersion']) {should eq 1}
       its(['labelColor']) {should eq 'rgb(255,255,255)'}
@@ -29,32 +29,32 @@ describe 'MerchantPassbook' do
     end
 
     context 'barcode' do
-      subject {promotion_passbook.pass['barcode']}
-      its(['message']) {should eq promotion.redemption_code}
-      its(['format']) {should eq 'PKBarcodeFormatQR'}
-      its(['messageEncoding']) {should eq 'iso-8859-1'}
+      #subject {promotion_passbook.pass['barcode']}
+      #its(['message']) {should eq promotion.redemption_code}
+      #its(['format']) {should eq 'PKBarcodeFormatQR'}
+      #its(['messageEncoding']) {should eq 'iso-8859-1'}
     end
 
     context 'coupon' do
-      subject {promotion_passbook.pass['coupon']['headerFields'].first}
-      its(['key']) {should eq 'header_0'}
-      its(['label']) {should eq promotion.company.name}
-      its(['value']) {should eq promotion.summary}
-      its(['changeMessage']) {should eq 'Pass updated: %@'}
+      #subject {promotion_passbook.pass['coupon']['headerFields'].first}
+      #its(['key']) {should eq 'header_0'}
+      #its(['label']) {should eq promotion.company.name}
+      #its(['value']) {should eq promotion.summary}
+      #its(['changeMessage']) {should eq 'Pass updated: %@'}
     end
 
     context 'auxiliary fields' do
-      subject {promotion_passbook.pass['coupon']['auxiliaryFields'].first}
-      its(['key']) {should eq 'auxiliary_0'}
-      its(['value']) {should eq promotion.description}
-      its(['changeMessage']) {should eq 'Pass updated: %@'}
+      #subject {promotion_passbook.pass['coupon']['auxiliaryFields'].first}
+      #its(['key']) {should eq 'auxiliary_0'}
+      #its(['value']) {should eq promotion.description}
+      #its(['changeMessage']) {should eq 'Pass updated: %@'}
     end
 
     context 'primary fields' do
-      subject {promotion_passbook.pass['coupon']['primaryFields'].last}
-      its (['key']) {should eq 'name'}
-      its (['label']) {should eq promotion.summary}
-      its (['value']) {should eq promotion.exclamation}
+      #subject {promotion_passbook.pass['coupon']['primaryFields'].last}
+      #its (['key']) {should eq 'name'}
+      #its (['label']) {should eq promotion.summary}
+      #its (['value']) {should eq promotion.exclamation}
     end
 
     context 'back fields' do
