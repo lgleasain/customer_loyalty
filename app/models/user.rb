@@ -12,9 +12,12 @@ class User < ActiveRecord::Base
 
   belongs_to :rolable, polymorphic: true
 
+  validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
+
+  before_create :create_child_class
 
   def initialize_rolable_type
     unless ['customer', 'merchant'].include? self.rolable_type
@@ -23,10 +26,12 @@ class User < ActiveRecord::Base
   end
 
   def create_child_class
-    if self.rolable_type == "customer"
-      self.rolable_id = Customer.create
-    else
-      self.rolable_id = Merchant.create
+    if self.valid?
+      if self.rolable_type == "customer"
+        self.rolable_id = Customer.create
+      else
+        self.rolable_id = Merchant.create
+      end
     end
   end
 end

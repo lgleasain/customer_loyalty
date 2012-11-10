@@ -16,6 +16,11 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'factory_girl_rails'
+  gem 'forgery'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 gem 'passbook', :git => 'git://github.com/lgleasain/passbook.git'
