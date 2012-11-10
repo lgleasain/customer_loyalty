@@ -1,0 +1,23 @@
+%h1.center Visit Recorded
+.container
+  .row.span12
+    .right.half Customer
+    .half John Doe
+  .row.span12
+    .right.half Points
+    .half 6
+
+  .row
+    %h2.center Rewards Earned
+    
+    %hr.span6.offset3
+    
+    .reward_container.offset3.span6.center.border
+      .border.reward_image
+        = image_tag "http://placehold.it/50x50"
+      .border.reward_text
+        Free Coffee Test
+      .border.reward_points
+        5 points
+  .center
+    = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
