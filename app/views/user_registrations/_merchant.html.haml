@@ -1,0 +1,30 @@
+= fields_for @merchant do |f|
+  = f.label :about
+  %br
+  = f.text_area :about
+
+  %br
+  = f.label :address
+  %br
+
+  = f.fields_for :addresses do |addr|
+    %p
+      = addr.label :street
+      %br
+      = addr.text_field :street
+    %p
+      = addr.label :street_2
+      %br
+      = addr.text_field :street_2
+    %p
+      = addr.label :city
+      %br
+      = addr.text_field :city
+    %p
+      = addr.label :state
+      %br
+      = addr.text_field :state
+    %P
+      = addr.label :zip
+      %br
+      = addr.text_field :zip

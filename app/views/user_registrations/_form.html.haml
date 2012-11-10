@@ -7,6 +7,8 @@
     = f.label :phone_number
     %br
     = f.text_field :phone_number
+  - if @user.rolable_type == "merchant"
+    = render 'merchant', merchant: @merchant
   %p
     = f.label :email
     %br

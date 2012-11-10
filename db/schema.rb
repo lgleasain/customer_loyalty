@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(:version => 20121110212111) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "merchant_id"
   end
 
   create_table "customer_passbooks", :force => true do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20121110212111) do
     t.string   "earn_type"
     t.integer  "reward_threshold_number"
     t.string   "reward_descripton"
+    t.text     "about"
   end
 
   create_table "users", :force => true do |t|
