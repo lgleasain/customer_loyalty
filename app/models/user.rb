@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
+  before_create :create_child_class
+
   def initialize_rolable_type
     unless ['customer', 'merchant'].include? self.rolable_type
       self.rolable_type = 'customer'
@@ -24,10 +26,12 @@ class User < ActiveRecord::Base
   end
 
   def create_child_class
-    if self.rolable_type == "customer"
-      self.rolable_id = Customer.create
-    else
-      self.rolable_id = Merchant.create
+    if self.valid?
+      if self.rolable_type == "customer"
+        self.rolable_id = Customer.create
+      else
+        self.rolable_id = Merchant.create
+      end
     end
   end
 end

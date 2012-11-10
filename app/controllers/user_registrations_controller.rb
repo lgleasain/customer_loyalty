@@ -8,7 +8,6 @@ class UserRegistrationsController < Devise::RegistrationsController
     @user = User.new(params[:user])
 
     if @user.save
-      @user.create_child_class
       redirect_to root_path, notice: "Signed up!"
     else
       render 'new'
