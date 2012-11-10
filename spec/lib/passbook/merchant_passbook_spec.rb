@@ -5,8 +5,15 @@ describe 'MerchantPassbook' do
   let (:customer) {FactoryGirl.create :customer}
   let (:merchant) {FactoryGirl.create :merchant}
   let (:merchant_passbook) {Passbook::MerchantPassbook.new customer.id, merchant.id}
+  let (:customer_passbook) {CustomerPassbook.find_by_customer_id_and_merchant_id customer.id, merchant.id}
 
   context 'new passbook' do
+
+    context 'customer_passbook' do
+      before {merchant_passbook}
+      subject {customer_passbook}
+      it {should_not eq nil}
+    end
 
     context 'pkpass' do
       #subject {merchant_passbook.pkpass}
@@ -21,7 +28,7 @@ describe 'MerchantPassbook' do
       its(['labelColor']) {should eq 'rgb(255,255,255)'}
       its(['foregroundColor']) {should eq 'rgb(252,252,252)'}
       its(['backgroundColor']) {should eq 'rgb(87,5,168)'}    
-      its(['serialNumber']) {should eq claimed_promotion.id.to_s}    
+      its(['serialNumber']) {should eq "#{customer.id}-#{merchant.id}"}    
       its(['teamIdentifier']) {should eq CustomerLoyalty::Application.config.passbook.team_identifier}    
       its(['organizationName']) {should eq CustomerLoyalty::Application.config.passbook.organization_name}
       its(['passTypeIdentifier']) {should eq CustomerLoyalty::Application.config.passbook.pass_type_identifier}
