@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110193935) do
+ActiveRecord::Schema.define(:version => 20121110195238) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20121110193935) do
     t.string   "earn_type"
     t.integer  "reward_threshold_number"
     t.string   "reward_descripton"
+    t.text     "about"
   end
 
   create_table "users", :force => true do |t|
