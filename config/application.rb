@@ -33,6 +33,10 @@ module CustomerLoyalty
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.passbook = ActiveSupport::OrderedOptions.new
+    config.passbook.team_identifier = 'VX25V9JR6S'
+    config.passbook.organization_name = 'Polyglot Programming LLC'
+    config.passbook.pass_type_identifier = 'pass.com.polyglotprogramminginc.testpass'
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
