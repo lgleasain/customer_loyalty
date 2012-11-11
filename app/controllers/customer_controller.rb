@@ -27,7 +27,7 @@ class CustomerController < ApplicationController
         end
         #redirect_to root_path, notice: "Passbook generated!"
       end
-      format.svg { render :qrcode => request.url }
+      format.svg { render :qrcode => request.url[0,request.url.size-4] }
     end
   end
 
