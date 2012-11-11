@@ -22,9 +22,10 @@ class CustomerController < ApplicationController
                                      disposition: 'attachment',
                                      filename: 'pass.pkpass'
         else
-          PassbookMailer.send_passbook(customer, merchant, passbook).deliver
+          #PassbookMailer.send_passbook(customer, merchant, passbook).deliver
+          send_data passbook.stream.string, type: 'application/vnd.apple.pkpass', disposition: 'attachment', filename: "pass.pkpass"
         end
-        redirect_to root_path, notice: "Passbook generated!"
+        #redirect_to root_path, notice: "Passbook generated!"
       end
       format.svg { render :qrcode => request.url }
     end
