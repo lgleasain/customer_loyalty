@@ -1,6 +1,6 @@
 module Passbook
   class MerchantPassbook
-    attr_accessor :pass, :manifest
+    attr_accessor :pass, :manifest, :pkpass
 
     def initialize customer_id, merchant_id
       @customer_passbook = CustomerPassbook.new(:customer_id => customer_id, 
@@ -51,6 +51,9 @@ module Passbook
         'strip.png' => 'lib/assets/strip.png',
         'strip@2x.png' => 'lib/assets/strip@2x.png'
       }
+
+      @pkpass = Passbook::PKPass.new @pass.to_json
+      @pkpass.manifest_files = @manifest.values
     end
   end
 end

@@ -18,9 +18,9 @@ describe 'MerchantPassbook' do
     end
 
     context 'pkpass' do
-      #subject {merchant_passbook.pkpass}
-      #its (:pass) {should eq merchant_passbook.pass.to_json}
-      #its (:manifest_files) {should eq merchant_passbook.manifest.values }
+      subject {merchant_passbook.pkpass}
+      its (:pass) {should eq merchant_passbook.pass.to_json}
+      its (:manifest_files) {should eq merchant_passbook.manifest.values }
     end
 
     context 'main fields' do

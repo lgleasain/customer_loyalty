@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/lgleasain/passbook.git
-  revision: b61ad591345ff889ba3f4b172611e799a6ca295b
+  revision: 71bff6734785d952b5488afb0a43363709dbd682
   specs:
     passbook (0.0.4)
       rubyzip
