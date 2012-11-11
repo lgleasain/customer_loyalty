@@ -6,6 +6,10 @@ class Merchant < ActiveRecord::Base
 
   validates :addresses, length: { minimum: 1 }
 
+  delegate :email, to: :user
+  delegate :name, to: :user
+  delegate :phone_number, to: :user
+
   def user
     User.where(rolable_type: 'merchant', rolable_id: self.id).first
   end
