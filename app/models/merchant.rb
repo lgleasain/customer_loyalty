@@ -14,4 +14,33 @@ class Merchant < ActiveRecord::Base
   def user
     User.where(rolable_type: 'merchant', rolable_id: self.id).first
   end
+
+  def self.find_by_search_params(params)
+    return Merchant.all unless search_params_present?(params)
+    [
+      Merchant.find_by_users_name(params[:name]),
+      Merchant.find_by_city(params[:city]),
+      Merchant.find_by_zip(params[:zip])
+    ].flatten
+  end
+
+  def self.search_params_present?(params)
+    if params
+      params[:name].present? || params[:city].present? || params[:zip].present?
+    else
+      false
+    end
+  end
+
+  def self.find_by_users_name(name)
+    Merchant.all.select { |m| m.user.name.downcase == name.downcase }
+  end
+
+  def self.find_by_city(city)
+    Merchant.all.select { |m| m.addresses.any? { |a| a.city.downcase == city.downcase } }
+  end
+
+  def self.find_by_zip(zip)
+    Merchant.all.select { |m| m.addresses.any? { |a| a.zip.downcase == zip.downcase } }
+  end
 end

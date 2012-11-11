@@ -1,0 +1,12 @@
+%h1
+  Discover merchants
+
+= render 'form'
+
+- if @merchants.present?
+  - @merchants.each do |merchant|
+    %p
+      #{merchant.name}
+- else
+  %p
+    No merchants match your search. Please try different search terms.

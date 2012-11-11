@@ -8,6 +8,7 @@ CustomerLoyalty::Application.routes.draw do
 
   get 'customer/:id/generate_passbook' => 'customer#generate_passbook', :as => 'generate_passbook'
   match "/customer/:id" => "customer#show", :as => 'customer_dashboard'
+  post 'customer/:id/merchant_search' => 'customer#merchant_search', as: 'merchant_search'
 
   get 'merchant/:id/rewards_program' => 'merchant#rewards_program', :as => 'reward_program_details'
   put 'merchant/:id/rewards_program' => 'merchant#update_rewards_program', :as => 'update_reward_program'

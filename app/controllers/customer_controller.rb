@@ -6,6 +6,10 @@ class CustomerController < ApplicationController
     @customer = Customer.find(current_user.rolable_id)
   end
 
+  def merchant_search
+    @merchants = Merchant.find_by_search_params(params[:search])
+  end
+
   def generate_passbook
     respond_to do |format|
       format.html do
