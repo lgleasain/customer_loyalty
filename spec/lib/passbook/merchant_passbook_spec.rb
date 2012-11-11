@@ -60,73 +60,69 @@ describe 'MerchantPassbook' do
         its(['label']) {should eq merchant.reward_program_name}
         its(['value']) {should eq customer.user.name}
       end
-    end
 
-    context 'auxiliary fields' do
-      #subject {promotion_passbook.pass['coupon']['auxiliaryFields'].first}
-      #its(['key']) {should eq 'auxiliary_0'}
-      #its(['value']) {should eq promotion.description}
-      #its(['changeMessage']) {should eq 'Pass updated: %@'}
-    end
+      context 'secondary fields' do
 
-    context 'primary fields' do
-      #subject {promotion_passbook.pass['coupon']['primaryFields'].last}
-      #its (['key']) {should eq 'name'}
-      #its (['label']) {should eq promotion.summary}
-      #its (['value']) {should eq promotion.exclamation}
-    end
+        let(:secondary_fields) {store_card['secondaryFields']}
 
-    context 'back fields' do
-      let(:back_fields) {promotion_passbook.pass['coupon']['backFields']}
-
-      before do
-        back_fields.each do |field|
-          case field['key']
-          when 'serial-861'
-            @serial_861 = field
-          when 'created-by-scratchhard'
-            @created_by_scratchhard = field
-          when 'back_0'
-            @back_0 = field
-          when 'back_3'
-            @back_3 = field
+        before do
+          secondary_fields.each do |field|
+            case field['key']
+            when 'donuts'
+              @donuts = field
+            when 'secondary_3'
+              @secondary_3 = field
+            end
           end
+        end
+
+        context 'donuts' do
+          subject {@donuts}
+          its(['key']) {should eq 'donuts'}
+          its(['label']) {should eq merchant.earn_type}
+          its(['value']) {should eq customer_passbook.balance}
+        end
+
+        context 'secondary_3' do
+          subject {@secondary_3}
+          its(['key']) {should eq 'secondary_3'}
+          its(['label']) {should eq 'Rewards Available'}
+          its(['value']) {should eq '' }
+          its(['changeMessage']) {should eq "Pass updated: %@"}
+          its(['textAlignment']) {should eq "PKTextAlignmentRight"}
         end
       end
 
-      context 'serial number' do
-        subject {@serial_861}
-        #its(:)
+      context 'back fields' do
+        let(:back_fields) {store_card['backFields']}
+
+        before do
+          back_fields.each do |field|
+            case field['key']
+            when 'reward'
+              @reward = field
+            end
+          end
+        end
+
+        context 'reward' do
+          subject {@reward}
+          its(['label']) {should eq 'Your Reward'}
+          its(['value']) {should eq merchant.reward_description}
+        end
       end
 
-      context 'scratch hard info' do
-        subject {@created_by_scratchhard}
-        its (['label']) {should eq 'Created by Scratch Hard'}
-        its (['value']) {should eq 'Copyright 2012 Scratch Hard'}
-      end
-
-      context 'back_0' do
-        subject {@back_0}
-        its (['label']) {should eq 'Redemption Code'}
-        its (['value']) {should eq promotion.redemption_code}
-      end
-
-      context 'back_3' do
-        subject {@back_3}
-        its (['label']) {should eq 'Terms and Instructions'}
-        its (['value']) {should eq "#{promotion.special_instructions} Valid from #{promotion.startDate} to #{promotion.expireDate}."}
-      end
     end  
   end
 
   context 'manifest' do
 
-    subject {promotion_passbook.manifest}
+    subject {merchant_passbook.manifest}
 
     its(['icon.png']) {should eq 'lib/assets/icon.png'}
     its(['icon@2x.png']) {should eq 'lib/assets/icon@2x.png'}
-    its(['logo.png']) {should eq 'lib/assets/logo.png'}
-    its(['logo@2x.png']) {should eq 'lib/assets/logo@2x.png'}
+    its(['strip.png']) {should eq 'lib/assets/strip.png'}
+    its(['strip@2x.png']) {should eq 'lib/assets/strip@2x.png'}
   end
 end 
 
