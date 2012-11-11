@@ -8,6 +8,7 @@ CustomerLoyalty::Application.routes.draw do
 
   #get 'customer/:id/trackvisit' => 'customer#track_visit'
   get 'customer/:id/track_visit' => 'customer#track_visit', :as => 'loyalty_scan'
+  get 'customer/:id/generate_passbook' => 'customer#generate_passbook'
 
   root :to => "home#index"
 end
