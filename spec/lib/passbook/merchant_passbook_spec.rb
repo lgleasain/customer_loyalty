@@ -6,7 +6,7 @@ describe 'MerchantPassbook' do
 
   let (:customer) {FactoryGirl.create :customer}
   let (:merchant) {FactoryGirl.create :merchant}
-  let (:merchant_passbook) {Passbook::MerchantPassbook.new customer.id, merchant.id}
+  let (:merchant_passbook) {Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(customer.id)}
   let (:customer_passbook) {CustomerPassbook.find_by_customer_id_and_merchant_id customer.id, merchant.id}
 
   context 'new passbook' do
@@ -15,6 +15,12 @@ describe 'MerchantPassbook' do
       before {merchant_passbook}
       subject {customer_passbook}
       it {should_not eq nil}
+
+      context 'should not create duplicate passbook records' do
+        before {Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(customer.id)}
+        subject {CustomerPassbook.find_all_by_customer_id_and_merchant_id customer.id, merchant.id}
+        its(:size) {should eq 1}
+      end
     end
 
     context 'pkpass' do

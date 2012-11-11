@@ -5,8 +5,10 @@ module Passbook
     attr_accessor :pass, :manifest, :pkpass
 
     def initialize customer_id, merchant_id, loyalty_url
-      @customer_passbook = CustomerPassbook.new(:customer_id => customer_id, 
-                                                :merchant_id => merchant_id)
+      @customer_passbook = CustomerPassbook.find_by_customer_id_and_merchant_id customer_id, 
+                                merchant_id
+      @customer_passbook = (CustomerPassbook.new(:customer_id => customer_id, 
+                                                :merchant_id => merchant_id)) if !@customer_passbook
       @customer_passbook.save!
       merchant = Merchant.find_by_id merchant_id
       customer = Customer.find_by_id customer_id
