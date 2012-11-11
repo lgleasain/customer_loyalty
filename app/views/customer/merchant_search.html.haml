@@ -5,8 +5,13 @@
 
 - if @merchants.present?
   - @merchants.each do |merchant|
+    %strong
+      Merchant: #{merchant.name}
     %p
-      #{merchant.name}
+      Address: #{merchant.address}
+    %p
+      = link_to "Download Passbook", generate_passbook_path(id: current_user.rolable_id, merchant_id: merchant.id)
+    %br
 - else
   %p
     No merchants match your search. Please try different search terms.

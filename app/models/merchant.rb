@@ -15,6 +15,10 @@ class Merchant < ActiveRecord::Base
     User.where(rolable_type: 'merchant', rolable_id: self.id).first
   end
 
+  def address
+    self.addresses.first.address_string
+  end
+
   def self.find_by_search_params(params)
     return Merchant.all unless search_params_present?(params)
     [
