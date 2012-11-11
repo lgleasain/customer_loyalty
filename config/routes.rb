@@ -8,7 +8,7 @@ CustomerLoyalty::Application.routes.draw do
   end
 
   get 'customer/:id/generate_passbook' => 'customer#generate_passbook', :as => 'generate_passbook'
-  get 'customer/:id/generate_insecure_passbook' => 'customer#generate_insecure_passbook', :as => 'generate_insecure_passbook'
+  get 'customer/:id/insecure_passbook' => 'customer#insecure_passbook', :as => 'generate_insecure_passbook'
   match "/customer/:id" => "customer#show", :as => 'customer_dashboard'
   post 'customer/:id/merchant_search' => 'customer#merchant_search', as: 'merchant_search'
 
