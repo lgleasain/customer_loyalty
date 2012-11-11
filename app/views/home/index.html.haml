@@ -12,3 +12,5 @@
 - if current_user.try(:is_merchant?)
   %br
   = link_to "Edit rewards", reward_program_details_path(current_user.rolable_id)
+  %br
+  = link_to "Print Signup Page", print_signup_page_path

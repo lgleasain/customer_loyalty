@@ -1,0 +1,19 @@
+.print-signup.container
+  %h2.center
+    = @merchant_user.name
+  .subtitle.center
+    Scan our QR code to signup for our Rewards program!
+  .qr.center
+    = image_tag(generate_passbook_path(@merchant_user.id) + '.svg', size: '150x150')
+  .signup_link.center
+    = link_to generate_passbook_url(@merchant_user.id), generate_passbook_url(@merchant_user.id)
+
+  .powered-by.center
+    powered by 
+    = image_tag "http://placehold.it/100x40"
+
+
+-#%h3 Merchant:
+-#= debug(@merchant) if user_session != nil
+-#%h3 Merchant user:
+-#= debug(@merchant_user) if user_session != nil

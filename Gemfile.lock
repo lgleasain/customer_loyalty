@@ -149,6 +149,9 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rqrcode (0.4.2)
+    rqrcode-rails3 (0.1.5)
+      rqrcode (>= 0.4.2)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -216,6 +219,7 @@ DEPENDENCIES
   pg
   pry
   rails (= 3.2.8)
+  rqrcode-rails3
   rspec-rails
   sass
   sass-rails (~> 3.2.3)
