@@ -9,7 +9,7 @@ class CustomerController < ApplicationController
   def generate_passbook
     merchant = Merchant.find(params[:merchant_id])
     customer = Customer.find(current_user.rolable_id)
-    passbook = Passbook::MerchantPassbook.new customer.id, merchant.id
+    passbook = Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(merchant.id)
     user_agent = request.env['HTTP_USER_AGENT'].downcase
     if user_agent =~ /iphone/
       send_data passbook.stream, type: 'application/vnd.apple.pkpass',
