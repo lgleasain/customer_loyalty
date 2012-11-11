@@ -1,34 +1,36 @@
 %h1.center Customer Rewards
 .container
-  .row.span12
-    .right.half Customer
-    .half 
+  .center
+    .left-cell 
+      Customer:
+    .right-cell 
       = @customer_user.name
-  .row.span12
-    .right.half 
-      = @merchant.earn_type
-    .half 
+  .center
+    .left-cell
+      = @merchant.earn_type.pluralize().capitalize()
+      \: 
+    .right-cell
       = @passbook.balance
   %br/
-  .center
+  .button-div.center
     = link_to 'Earn', nil, class: 'btn btn-large btn-primary'
 
   .row
     %h2.center Rewards Earned
-    
+
     %hr.span6.offset3
-    
-    .reward_container.offset3.span6.center.border
-      .border.reward_image
-        = image_tag "http://placehold.it/50x50"
-      .border.reward_text
+
+    .reward-div.offset3.span6.center
+      .reward-image
+        &nbsp; 
+        -#= image_tag "http://placehold.it/50x50"
+      .reward-text.center
         = @merchant.reward_program_name
-      .border.reward_points
-        = @merchant.reward_threshold_number 
-        = @merchant.earn_type
-  .center
+      .reward-points
+        = pluralize(@merchant.reward_threshold_number, @merchant.earn_type)
+  .button-div.center
     = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
-  
+
   -#%h3 Customer:
   -#= debug(@customer) if user_session != nil
   -#%h3 Customer user:

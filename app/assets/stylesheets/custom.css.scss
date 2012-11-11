@@ -5,33 +5,33 @@
   text-align: center;
   }
 
-.right {
+.left-cell {
   text-align: right;
+  width: 150px;
+  display: inline-block;
 }
-.border {
-  /*border:1px solid red;*/
+.right-cell {
+  text-align: left;
+  width: 150px;
+  display: inline-block;
 }
-.reward_container {
+
+.reward-container {
   white-space:nowrap;
 }
-.reward_image {
+.reward-image {
   width:55px;
   float:left;
 }
-.reward_text{
+.reward-text{
   float:left;
   width:60%;
   min-width:100px;
 }
-.reward_points{
+.reward-points{
   width:50px;
   float:left;
 }
-
-.half {
-  float: left !important;
-  width: 45% !important;
-  padding: 0 5px;
-  }
-
-
+.button-div {
+  padding-top:10px;
+}
