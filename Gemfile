@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'pry'
 gem 'simple_form'
 gem 'heroku'
+gem 'rqrcode-rails3'
 
 group :test, :development do
   gem 'rspec-rails'

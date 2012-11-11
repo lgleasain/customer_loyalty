@@ -12,6 +12,10 @@ class MerchantController < ApplicationController
     redirect_to root_path, notice: "Reward program updated!"
   end
 
+  def print_signup_page
+    load_merchant
+  end
+
   def load_merchant
     @merchant_user = User.find_by_id(current_user.id)
     @merchant = Merchant.find_by_id(@merchant_user.rolable_id)
