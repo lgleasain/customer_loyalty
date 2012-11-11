@@ -20,6 +20,13 @@ class MerchantController < ApplicationController
     @passbook = CustomerPassbook.find_by_customer_id_and_merchant_id(@customer_user.rolable_id, @merchant_user.rolable_id)
   end
 
+  def earn
+    @passbook = CustomerPassbook.find(params[:passbook_id])
+    @passbook.balance += 1
+    @passbook.save
+    redirect_to loyalty_scan_path(params[:customer_id])
+  end
+
   private
 
   def check_merchant_logged_in

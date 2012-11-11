@@ -9,11 +9,14 @@
     .left-cell
       = @merchant.earn_type.pluralize().capitalize()
       \: 
-    .right-cell
+    .right-cell.passbook-balance
       = @passbook.balance
   %br/
   .button-div.center
-    = link_to 'Earn', nil, class: 'btn btn-large btn-primary'
+    = form_tag(earn_path, id: 'earn_form') do
+      = hidden_field_tag 'passbook_id', @passbook.id
+      = hidden_field_tag 'customer_id', @customer.id
+      = submit_tag "Earn Reward", class: "btn btn-large btn-primary"
 
   %h2.center Rewards Earned
 
@@ -30,17 +33,18 @@
       .reward-points
         = pluralize(@merchant.reward_threshold_number, @merchant.earn_type)
     .button-div.center
-      = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
+      = link_to 'Redeem Reward', nil, class: 'btn btn-large btn-primary btn-success'
 
-  -#%h3 Customer:
-  -#= debug(@customer) if user_session != nil
-  -#%h3 Customer user:
-  -#= debug(@customer_user) if user_session != nil
-  -#%h3 Merchant:
-  -#= debug(@merchant) if user_session != nil
-  -#%h3 current_user:
-  -#= debug(@current_user) if user_session != nil
-  -#%h3 passbook:
-  -#= debug(@passbook) if user_session != nil
-  -#= debug(@merchant.user) if user_session != nil
+
+-#%h3 Customer:
+-#= debug(@customer) if user_session != nil
+-#%h3 Customer user:
+-#= debug(@customer_user) if user_session != nil
+-#%h3 Merchant:
+-#= debug(@merchant) if user_session != nil
+-#%h3 current_user:
+-#= debug(@current_user) if user_session != nil
+-#%h3 passbook:
+-#= debug(@passbook) if user_session != nil
+-#= debug(@merchant.user) if user_session != nil
 
