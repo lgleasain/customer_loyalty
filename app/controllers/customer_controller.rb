@@ -44,7 +44,7 @@ def generate_passbook
       end
       #redirect_to root_path, notice: "Passbook generated!"
     end
-    format.svg { render :qrcode => generate_insecure_password_url params[:merchant_id] }
+    format.svg { render :qrcode => generate_insecure_password_url(params[:merchant_id]) }
   end
 end
 
