@@ -15,14 +15,11 @@ class CustomerController < ApplicationController
     customer = FactoryGirl.create :customer
     passbook = Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(merchant.id)
     user_agent = request.env['HTTP_USER_AGENT'].downcase
-    if user_agent =~ /iphone/
       send_data passbook.stream, type: 'application/vnd.apple.pkpass',
       disposition: 'attachment',
       filename: 'pass.pkpass'
-    else
       #PassbookMailer.send_passbook(customer, merchant, passbook).deliver
-      send_data passbook.stream.string, type: 'application/vnd.apple.pkpass', disposition: 'attachment', filename: "pass.pkpass"
-    end
+#      send_data passbook.stream.string, type: 'application/vnd.apple.pkpass', disposition: 'attachment', filename: "pass.pkpass"
     #redirect_to root_path, notice: "Passbook generated!"
   end
 
