@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'bootstrap-sass'
 gem 'pry'
 gem 'simple_form'
+gem 'heroku'
 
 group :test, :development do
   gem 'rspec-rails'
