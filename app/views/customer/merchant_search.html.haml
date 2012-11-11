@@ -3,6 +3,9 @@
 
 = render 'form'
 
+%p
+  = link_to "Back", customer_dashboard_path(current_user.rolable_id)
+
 - if @merchants.present?
   - @merchants.each do |merchant|
     %strong
