@@ -7,11 +7,11 @@ CustomerLoyalty::Application.routes.draw do
   end
 
   #get 'customer/:id/trackvisit' => 'customer#track_visit'
-  get 'customer/:id/track_visit' => 'customer#track_visit', :as => 'loyalty_scan'
   get 'customer/:id/generate_passbook' => 'customer#generate_passbook'
 
   get 'merchant/:id/rewards_program' => 'merchant#rewards_program', :as => 'reward_program_details'
   put 'merchant/:id/rewards_program' => 'merchant#update_rewards_program', :as => 'update_reward_program'
+  get 'merchant/loyalty_scan/:id' => 'merchant#loyalty_scan', :as => 'loyalty_scan'
 
   root :to => "home#index"
 end
