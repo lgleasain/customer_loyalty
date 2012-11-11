@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111023509) do
+ActiveRecord::Schema.define(:version => 20121111033444) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20121111023509) do
     t.string   "reward_program_name"
     t.string   "earn_type"
     t.integer  "reward_threshold_number"
-    t.string   "reward_descripton"
     t.text     "about"
+    t.string   "reward_description"
   end
 
   create_table "users", :force => true do |t|
