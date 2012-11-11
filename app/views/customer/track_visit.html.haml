@@ -1,11 +1,17 @@
-%h1.center Visit Recorded
+%h1.center Customer Rewards
 .container
   .row.span12
     .right.half Customer
-    .half John Doe
+    .half 
+      = @customer_user.name
   .row.span12
-    .right.half Points
-    .half 6
+    .right.half 
+      = @merchant.earn_type
+    .half 
+      = @passbook.balance
+  %br/
+  .center
+    = link_to 'Earn', nil, class: 'btn btn-large btn-primary'
 
   .row
     %h2.center Rewards Earned
@@ -16,8 +22,22 @@
       .border.reward_image
         = image_tag "http://placehold.it/50x50"
       .border.reward_text
-        Free Coffee Test
+        = @merchant.reward_program_name
       .border.reward_points
-        5 points
+        = @merchant.reward_threshold_number 
+        = @merchant.earn_type
   .center
     = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
+  
+  -#%h3 Customer:
+  -#= debug(@customer) if user_session != nil
+  -#%h3 Customer user:
+  -#= debug(@customer_user) if user_session != nil
+  -#%h3 Merchant:
+  -#= debug(@merchant) if user_session != nil
+  -#%h3 current_user:
+  -#= debug(@current_user) if user_session != nil
+  -#%h3 passbook:
+  -#= debug(@passbook) if user_session != nil
+  -#= debug(@merchant.user) if user_session != nil
+
