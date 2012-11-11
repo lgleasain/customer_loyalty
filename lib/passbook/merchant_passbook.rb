@@ -1,8 +1,10 @@
+include Rails.application.routes.url_helpers
+
 module Passbook
   class MerchantPassbook
     attr_accessor :pass, :manifest, :pkpass
 
-    def initialize customer_id, merchant_id
+    def initialize customer_id, merchant_id, loyalty_url
       @customer_passbook = CustomerPassbook.new(:customer_id => customer_id, 
                                                 :merchant_id => merchant_id)
       @customer_passbook.save!
@@ -19,7 +21,7 @@ module Passbook
         'organizationName' => CustomerLoyalty::Application.config.passbook.organization_name,
         'passTypeIdentifier' => CustomerLoyalty::Application.config.passbook.pass_type_identifier,
         'barcode' => {
-        'message' => loyalty_scan_url(customer_id),
+        'message' => loyalty_url,
         'format' => 'PKBarcodeFormatQR',
         'messageEncoding' => 'iso-8859-1'},
         'storeCard' => {
