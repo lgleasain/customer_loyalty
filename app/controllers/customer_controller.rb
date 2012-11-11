@@ -15,7 +15,7 @@ class CustomerController < ApplicationController
     customer = FactoryGirl.create :customer
     passbook = Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(merchant.id)
     user_agent = request.env['HTTP_USER_AGENT'].downcase
-      send_data passbook.stream, type: 'application/vnd.apple.pkpass',
+      send_data passbook.stream.string, type: 'application/vnd.apple.pkpass',
       disposition: 'attachment',
       filename: 'pass.pkpass'
       #PassbookMailer.send_passbook(customer, merchant, passbook).deliver
