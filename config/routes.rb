@@ -7,7 +7,7 @@ CustomerLoyalty::Application.routes.draw do
   end
 
   #get 'customer/:id/trackvisit' => 'customer#track_visit'
-  get 'customer/:id/track_visit' => 'customer#track_visit'
+  get 'customer/:id/track_visit' => 'customer#track_visit', :as => 'loyalty_scan'
 
   root :to => "home#index"
 end

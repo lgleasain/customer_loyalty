@@ -1,4 +1,6 @@
 require 'spec_helper'
+include Rails.application.routes.url_helpers
+default_url_options[:host] = 'www.loyalty.com'
 
 describe 'MerchantPassbook' do
 
@@ -32,22 +34,32 @@ describe 'MerchantPassbook' do
       its(['teamIdentifier']) {should eq CustomerLoyalty::Application.config.passbook.team_identifier}    
       its(['organizationName']) {should eq CustomerLoyalty::Application.config.passbook.organization_name}
       its(['passTypeIdentifier']) {should eq CustomerLoyalty::Application.config.passbook.pass_type_identifier}
-      its(['description']) {should eq ''}    
+      its(['description']) {should eq ''}
     end
 
     context 'barcode' do
-      #subject {promotion_passbook.pass['barcode']}
-      #its(['message']) {should eq promotion.redemption_code}
-      #its(['format']) {should eq 'PKBarcodeFormatQR'}
-      #its(['messageEncoding']) {should eq 'iso-8859-1'}
+      subject {merchant_passbook.pass['barcode']}
+      its(['message']) {should eq loyalty_scan_url(customer.id)}
+      its(['format']) {should eq 'PKBarcodeFormatQR'}
+      its(['messageEncoding']) {should eq 'iso-8859-1'}
     end
 
-    context 'coupon' do
-      #subject {promotion_passbook.pass['coupon']['headerFields'].first}
-      #its(['key']) {should eq 'header_0'}
-      #its(['label']) {should eq promotion.company.name}
-      #its(['value']) {should eq promotion.summary}
-      #its(['changeMessage']) {should eq 'Pass updated: %@'}
+    context 'storeCard' do
+      let(:store_card) {merchant_passbook.pass['storeCard']}
+
+      context 'header fields' do
+        subject {store_card['headerFields'].first}
+        its(['key']) {should eq 'balance'}
+        its(['label']) {should eq 'Local Loyalty'}
+        its(['value']) {should eq ''}
+      end
+
+      context 'primary fields' do
+        subject {store_card['primaryFields'].first}
+        its(['key']) {should eq 'name'}
+        its(['label']) {should eq merchant.reward_program_name}
+        its(['value']) {should eq customer.user.name}
+      end
     end
 
     context 'auxiliary fields' do

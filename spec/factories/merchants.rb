@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:earn_type) {|n| "Cobras #{n}"}
     sequence(:reward_threshold_number) {|n| n}
     sequence(:reward_descripton) {|n| "Bee Larvae #{n}"}
+    addresses {create_list :address, 1}
   end
 end
