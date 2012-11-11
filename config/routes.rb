@@ -4,6 +4,7 @@ CustomerLoyalty::Application.routes.draw do
   devise_scope :user do
     match 'merchant/sign_up' => 'user_registrations#new', :user => { :rolable_type => 'merchant' }
     match 'customer/sign_up' => 'user_registrations#new', :user => { :rolable_type => 'customer' }
+    match 'merchant/edit' => 'user_registrations#edit', :user => { :rolable_type => 'merchant' }
   end
 
   get 'customer/:id/generate_passbook' => 'customer#generate_passbook', :as => 'generate_passbook'

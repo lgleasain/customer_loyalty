@@ -1,13 +1,35 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import "bootstrap-cer";
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
 
 .center {
   text-align: center;
-  }
+}
 
 .alert {
   margin-top: 15px;
 }
+#ll-logo-img {
+  float: left;
+  padding-right: 16px;
+  padding-top: 8px;
+}
+.home-logo {
+  padding-top: 55px;
+}
+.home-instructions {
+  width:450px;
+  margin:auto;
+}
+
 .left-cell {
   text-align: right;
   width: 150px;
@@ -22,6 +44,7 @@
 .nowrap {
   white-space:nowrap;
 }
+
 .reward-image {
   width:50px;
   float:left;
@@ -41,14 +64,12 @@
   margin:auto;
   padding-bottom:10px;
 }
+
 .button-div {
   padding:10px 0;
 }
 
 .print-signup{
-  .subtitle{
-    
-  }
   .qr{
     margin-top:10px;
   }

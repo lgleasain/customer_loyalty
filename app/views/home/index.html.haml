@@ -1,16 +1,28 @@
-%h1
-  Customer Loyalty
+.container
+  .home-logo.center
+    = image_tag 'LL-squarelandscape.png', size: '250x100'
+  - if !current_user.nil?
+    %h3.center
+      Next Steps
+    .home-instructions.center
+      Thank you for registering!  Print a customer signup page or download a QR code that links to your signup page.
+    %br/
+    .center
+      = link_to "Print Signup Page", print_signup_page_path
+      %br/
+      = link_to "Download QR Code Graphic", generate_passbook_url(current_user.rolable_id) + ".svg", target: "_blank"
+      
+  -#%br
+  -#= link_to "Sign in", new_user_session_path
+  -#%br
+  -#= link_to "Sign out", destroy_user_session_path, method: :delete
 
-= link_to "Customer sign up", customer_sign_up_path
-%br
-= link_to "Merchant sign up", merchant_sign_up_path
-%br
-= link_to "Sign in", new_user_session_path
-%br
-= link_to "Sign out", destroy_user_session_path, method: :delete
-
-- if current_user.try(:is_merchant?)
-  %br
-  = link_to "Edit rewards", reward_program_details_path(current_user.rolable_id)
-  %br
-  = link_to "Print Signup Page", print_signup_page_path
+  - if current_user.nil?
+    .center
+      %br/
+      %br/
+      = link_to "Sign in", new_user_session_path
+      %br/
+      = link_to "Customer sign up", customer_sign_up_path
+      %br/
+      = link_to "Merchant sign up", merchant_sign_up_path
