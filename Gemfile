@@ -14,6 +14,7 @@ gem 'pry'
 gem 'simple_form'
 gem 'heroku'
 gem 'rqrcode-rails3'
+gem 'mailcatcher'
 
 group :test, :development do
   gem 'rspec-rails'
