@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'heroku'
 gem 'rqrcode-rails3'
 gem 'thin'
+gem 'factory_girl_rails'
 
 group :test, :development do
   gem 'rspec-rails'
