@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:reward_program_name) {|n| "Cobra Rewards #{n}"}
     sequence(:earn_type) {|n| "Cobras #{n}"}
     sequence(:reward_threshold_number) {|n| n}
-    sequence(:reward_descripton) {|n| "Bee Larvae #{n}"}
+    sequence(:reward_description) {|n| "Bee Larvae #{n}"}
     addresses { create_list :address, 2 }
 
     after(:create) do |merchant|

@@ -2,6 +2,13 @@
   Customer Loyalty
 
 = link_to "Customer sign up", customer_sign_up_path
+%br
 = link_to "Merchant sign up", merchant_sign_up_path
+%br
 = link_to "Sign in", new_user_session_path
+%br
 = link_to "Sign out", destroy_user_session_path, method: :delete
+
+- if current_user.try(:is_merchant?)
+  %br
+  = link_to "Edit rewards", reward_program_details_path(current_user.rolable_id)

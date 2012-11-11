@@ -1,0 +1,9 @@
+%h2
+  Update your rewards program
+
+= simple_form_for @merchant, url: update_reward_program_path(@merchant) do |f|
+  = f.input :reward_program_name
+  = f.input :reward_threshold_number
+  = f.input :reward_description
+
+  = f.button :submit
