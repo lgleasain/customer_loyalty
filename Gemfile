@@ -14,6 +14,7 @@ gem 'pry'
 gem 'simple_form'
 gem 'heroku'
 gem 'rqrcode-rails3'
+gem 'thin'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -24,6 +25,7 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'launchy'
+  gem 'mailcatcher'
 end
 
 gem 'passbook', :git => 'git://github.com/lgleasain/passbook.git'

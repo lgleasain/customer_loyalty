@@ -6,6 +6,10 @@ class CustomerController < ApplicationController
     @customer = Customer.find(current_user.rolable_id)
   end
 
+  def merchant_search
+    @merchants = Merchant.find_by_search_params(params[:search])
+  end
+
   def generate_passbook
     respond_to do |format|
       format.html do
@@ -18,9 +22,10 @@ class CustomerController < ApplicationController
                                      disposition: 'attachment',
                                      filename: 'pass.pkpass'
         else
-          PassbookMailer.send_passbook(customer, merchant, passbook).deliver
+          #PassbookMailer.send_passbook(customer, merchant, passbook).deliver
+          send_data passbook.stream.string, type: 'application/vnd.apple.pkpass', disposition: 'attachment', filename: "pass.pkpass"
         end
-        redirect_to root_path, notice: "Passbook generated!"
+        #redirect_to root_path, notice: "Passbook generated!"
       end
       format.svg { render :qrcode => request.url }
     end
