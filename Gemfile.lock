@@ -250,4 +250,5 @@ DEPENDENCIES
   sass
   sass-rails (~> 3.2.3)
   simple_form
+  thin
   uglifier (>= 1.0.3)
