@@ -11,7 +11,7 @@ class CustomerController < ApplicationController
   end
 
   def insecure_passbook
-    merchant = Merchant.find(params[:merchant_id])
+    merchant = Merchant.find(params[:id])
     customer = FactoryGirl.create :customer
     passbook = Passbook::MerchantPassbook.new customer.id, merchant.id, loyalty_scan_url(merchant.id)
     user_agent = request.env['HTTP_USER_AGENT'].downcase
