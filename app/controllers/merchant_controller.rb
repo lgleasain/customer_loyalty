@@ -12,18 +12,32 @@ class MerchantController < ApplicationController
     redirect_to root_path, notice: "Reward program updated!"
   end
 
+  def load_merchant
+    @merchant_user = User.find_by_id(current_user.id)
+    @merchant = Merchant.find_by_id(@merchant_user.rolable_id)
+  end
   def loyalty_scan
     @customer_user = User.find_by_id(params[:id])
     @customer = Customer.find_by_id(@customer_user.rolable_id)
-    @merchant_user = User.find_by_id(current_user.id)
-    @merchant = Merchant.find_by_id(@merchant_user.rolable_id)
+    load_merchant
     @passbook = CustomerPassbook.find_by_customer_id_and_merchant_id(@customer_user.rolable_id, @merchant_user.rolable_id)
   end
 
   def earn
+    load_merchant
     @passbook = CustomerPassbook.find(params[:passbook_id])
     @passbook.balance += 1
     @passbook.save
+    flash[:info] = "#{@merchant.earn_type.capitalize} earned"
+    redirect_to loyalty_scan_path(params[:customer_id])
+  end
+
+  def redeem
+    load_merchant
+    @passbook = CustomerPassbook.find(params[:passbook_id])
+    @passbook.balance -= @merchant.reward_threshold_number
+    @passbook.save
+    flash[:success] = "#{@merchant.reward_program_name} redeemed!"
     redirect_to loyalty_scan_path(params[:customer_id])
   end
 

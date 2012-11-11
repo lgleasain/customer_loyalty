@@ -9,7 +9,7 @@
   %body
     .container
       - flash.each do |severity, message|
-        = content_tag(:div, message, { class: "alert-#{severity}" })
+        = content_tag(:div, message, { class: "alert alert-#{severity}" })
       = yield
       -#= debug(params) if Rails.env.development?
       -#= debug(current_user) if current_user != nil

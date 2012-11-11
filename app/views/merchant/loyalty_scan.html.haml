@@ -1,11 +1,11 @@
-%h1.center Customer Rewards
+%h2.center Customer Rewards
 .container
-  .center
+  .center.nowrap
     .left-cell 
       Customer:
     .right-cell 
       = @customer_user.name
-  .center
+  .center.nowrap
     .left-cell
       = @merchant.earn_type.pluralize().capitalize()
       \: 
@@ -18,22 +18,25 @@
       = hidden_field_tag 'customer_id', @customer.id
       = submit_tag "Earn Reward", class: "btn btn-large btn-primary"
 
-  %h2.center Rewards Earned
-
-  .center
-    %hr.reward-separator{ align: "center" }
-
   -if @passbook.balance >= @merchant.reward_threshold_number
-    .center.reward-div
-      .reward-image
-        &nbsp; 
-        -#= image_tag "http://placehold.it/50x50"
-      .reward-text.center
-        = @merchant.reward_program_name
-      .reward-points
-        = pluralize(@merchant.reward_threshold_number, @merchant.earn_type)
-    .button-div.center
-      = link_to 'Redeem Reward', nil, class: 'btn btn-large btn-primary btn-success'
+    %h3.center Rewards Earned
+
+    .center
+      %hr.reward-separator{ align: "center" }
+      .center.nowrap
+        .reward-image
+          &nbsp; 
+          -#= image_tag "http://placehold.it/50x50"
+        .reward-text.center
+          = @merchant.reward_program_name
+        .reward-points
+          = pluralize(@merchant.reward_threshold_number, @merchant.earn_type)
+      .button-div.center
+        -#= link_to 'Redeem Reward', nil, class: 'btn btn-large btn-primary btn-success'
+        = form_tag(redeem_path, id: 'earn_form') do
+          = hidden_field_tag 'passbook_id', @passbook.id
+          = hidden_field_tag 'customer_id', @customer.id
+          = submit_tag "Redeem Reward", class: "btn btn-large btn-success"
 
 
 -#%h3 Customer:

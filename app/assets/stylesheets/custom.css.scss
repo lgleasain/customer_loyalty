@@ -5,6 +5,9 @@
   text-align: center;
   }
 
+.alert {
+  margin-top: 15px;
+}
 .left-cell {
   text-align: right;
   width: 150px;
@@ -16,7 +19,7 @@
   display: inline-block;
 }
 
-.reward-div {
+.nowrap {
   white-space:nowrap;
 }
 .reward-image {

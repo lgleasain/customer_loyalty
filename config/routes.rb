@@ -12,6 +12,7 @@ CustomerLoyalty::Application.routes.draw do
   put 'merchant/:id/rewards_program' => 'merchant#update_rewards_program', :as => 'update_reward_program'
   get 'merchant/loyalty_scan/:id' => 'merchant#loyalty_scan', :as => 'loyalty_scan'
   post 'merchant/earn' => 'merchant#earn', :as => 'earn'
+  post 'merchant/redeem' => 'merchant#redeem', :as => 'redeem'
 
   root :to => "home#index"
 end
