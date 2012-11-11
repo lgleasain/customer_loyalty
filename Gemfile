@@ -16,6 +16,7 @@ gem 'heroku'
 gem 'rqrcode-rails3'
 gem 'thin'
 gem 'factory_girl_rails'
+gem 'forgery'
 
 group :test, :development do
   gem 'rspec-rails'
