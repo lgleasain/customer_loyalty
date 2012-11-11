@@ -55,6 +55,14 @@ module Passbook
       @pkpass = Passbook::PKPass.new @pass.to_json
       @pkpass.manifest_files = @manifest.values
     end
+
+    def stream
+      self.pkpass.stream
+    end
+
+    def file
+      self.pkpass.file
+    end
   end
 end
 #       subject {store_card['primaryFields'].first}
