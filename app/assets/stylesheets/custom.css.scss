@@ -16,22 +16,28 @@
   display: inline-block;
 }
 
-.reward-container {
+.reward-div {
   white-space:nowrap;
 }
 .reward-image {
-  width:55px;
+  width:50px;
   float:left;
+  display: inline-block;
 }
 .reward-text{
-  float:left;
-  width:60%;
-  min-width:100px;
+  max-width:400px;
+  min-width:200px;
+  display: inline-block;
 }
 .reward-points{
   width:50px;
-  float:left;
+  display: inline-block;
+}
+.reward-separator{
+  width:300px;
+  margin:auto;
+  padding-bottom:10px;
 }
 .button-div {
-  padding-top:10px;
+  padding:10px 0;
 }

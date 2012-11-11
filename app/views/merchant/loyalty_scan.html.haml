@@ -15,12 +15,13 @@
   .button-div.center
     = link_to 'Earn', nil, class: 'btn btn-large btn-primary'
 
-  .row
-    %h2.center Rewards Earned
+  %h2.center Rewards Earned
 
-    %hr.span6.offset3
+  .center
+    %hr.reward-separator{ align: "center" }
 
-    .reward-div.offset3.span6.center
+  -if @passbook.balance >= @merchant.reward_threshold_number
+    .center.reward-div
       .reward-image
         &nbsp; 
         -#= image_tag "http://placehold.it/50x50"
@@ -28,8 +29,8 @@
         = @merchant.reward_program_name
       .reward-points
         = pluralize(@merchant.reward_threshold_number, @merchant.earn_type)
-  .button-div.center
-    = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
+    .button-div.center
+      = link_to 'Redeem', nil, class: 'btn btn-large btn-primary'
 
   -#%h3 Customer:
   -#= debug(@customer) if user_session != nil
