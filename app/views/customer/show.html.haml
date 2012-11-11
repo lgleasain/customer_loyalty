@@ -1,12 +1,12 @@
 %h1
   Welcome #{@customer.name}!
-  = link_to "Find", merchant_search_path, method: :post
+
+%p
+  = link_to "Find Merchants", merchant_search_path, method: :post
 
 - if @customer.customer_passbooks.empty?
-  %p<
+  %p
     You don't have any passbooks!
-    = link_to "Find", merchant_search_path, method: :post
-    some merchants in your area.
 - else
   %h3
     Your Passbooks:
