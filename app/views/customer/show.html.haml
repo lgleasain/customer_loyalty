@@ -1,5 +1,6 @@
 %h1
   Welcome #{@customer.name}!
+  = link_to "Find", merchant_search_path, method: :post
 
 - if @customer.customer_passbooks.empty?
   %p<
