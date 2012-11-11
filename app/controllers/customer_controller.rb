@@ -2,6 +2,10 @@ class CustomerController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_client_logged_in
 
+  def show
+    @customer = Customer.find(current_user.rolable_id)
+  end
+
   def generate_passbook
     merchant = Merchant.find(params[:merchant_id])
     customer = Customer.find(current_user.rolable_id)

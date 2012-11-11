@@ -1,0 +1,28 @@
+%h1
+  Welcome #{@customer.name}!
+
+- if @customer.customer_passbooks.empty?
+  %p<
+    You don't have any passbooks!
+    = link_to "Find", "#"
+    some merchants in your area.
+- else
+  %h3
+    Your Passbooks:
+  -@customer.customer_passbooks.each do |passbook|
+    -merchant = passbook.merchant
+    %h4
+      #{merchant.name} passbook
+    %p
+      Reward program: #{merchant.reward_program_name}
+    %p
+      Reward description: #{merchant.reward_description}
+    %p
+      Reward threshold: #{merchant.reward_threshold_number}
+    %strong
+      Your current balance: #{passbook.balance}
+    - if passbook.balance >= merchant.reward_threshold_number
+      %br
+      %strong
+        You have unlocked this reward! Remember to redeem it next time you visit.
+
