@@ -11,8 +11,8 @@
       = link_to "Print Signup Page", print_signup_page_path
       %br
       = link_to "Download QR Code Graphic", generate_passbook_url(current_user.rolable_id) + ".svg", target: "_blank"
-      -#%br
-      -#= link_to "Sign out", destroy_user_session_path, method: :delete
+      %br
+      = link_to "Sign out", destroy_user_session_path, method: :delete
 
   - if current_user.nil?
     .center
