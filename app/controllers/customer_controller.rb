@@ -16,7 +16,7 @@ class CustomerController < ApplicationController
                                  disposition: 'attachment',
                                  filename: 'pass.pkpass'
     else
-      PassbookMailer.send_passbook(customer, merchant, passbook)
+      PassbookMailer.send_passbook(customer, merchant, passbook).deliver
     end
     redirect_to root_path, notice: "Passbook generated!"
   end
