@@ -19,12 +19,15 @@ class MerchantController < ApplicationController
   def load_merchant
     @merchant_user = User.find_by_id(current_user.id)
     @merchant = Merchant.find_by_id(@merchant_user.rolable_id)
+    p @merchant_user
+    p @merchant
   end
   def loyalty_scan
     @customer_user = User.find_by_id(params[:id])
     @customer = Customer.find_by_id(@customer_user.rolable_id)
     load_merchant
     @passbook = CustomerPassbook.find_by_customer_id_and_merchant_id(@customer_user.rolable_id, @merchant_user.rolable_id)
+    p @passbook
   end
 
   def earn
